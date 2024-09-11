@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中秋节快乐</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #ffcc99;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #d2691e;
+        }
+
+        /* 月亮背景动画 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+            background-image: url('moon .png'); /* 可替换为月亮图片 */
+            background-size: cover;
+            animation: moveMoon 20s linear infinite;
+        }
+
+        @keyframes moveMoon {
+            0% { left: -100px; }
+            50% { left: 50%; }
+            100% { left: 100%; }
+        }
+
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content h2 {
+            color: #8b4513;
+        }
+
+        .main-content img {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .main-content img:hover {
+            transform: scale(1.1);
+        }
+
+        .main-content .tooltip {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+        }
+
+        .main-content img:hover + .tooltip {
+            display: inline-block;
+        }
+
+        .legends, .customs {
+            background-color: #ffe4b5;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .customs {
+            background-color: #faf0e6;
+        }
+
+        .blessings {
+            font-size: 24px;
+            color: #ff4500;
+            margin: 20px;
+            animation: fadeIn 3s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        footer {
+            background-color: #ffcc99;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        footer p {
+            margin: 0;
+            color: #8b4513;
+        }
+
+        /* 倒计时 */
+        .countdown {
+            font-size: 20px;
+            color: #006400;
+            margin: 20px;
+        }
+
+        .blessings-box {
+            font-size: 20px;
+            color: #ff4500;
+            margin: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>中秋节快乐！</h1>
+        <p>月圆人团圆，阖家幸福。</p>
+    </header>
+
+    <div class="main-content">
+        <h2>中秋节传统文化元素</h2>
+        <div>
+            <img src="mooncake.jpg" alt="月饼" />
+            <span class="tooltip">象征团圆的月饼</span>
+            <img src="change.jpg" alt="嫦娥" />
+            <span class="tooltip">嫦娥奔月的传说</span>
+            <img src="yutu.jpg" alt="玉兔" />
+            <span class="tooltip">陪伴嫦娥的玉兔</span>
+            <img src="moon.jpg" alt="赏月" />
+            <span class="tooltip">中秋赏月的习俗</span>
+        </div>
+    </div>
+
+    <div class="legends">
+        <h2>中秋节的传说</h2>
+        <p>中秋节有许多美丽的传说，其中最著名的莫过于嫦娥奔月的故事。传说嫦娥为了拯救她的丈夫后羿，吞下了长生不老药，飞升到月亮上，成为了月宫的主人。而陪伴她的，还有玉兔。</p>
+    </div>
+
+    <div class="customs">
+        <h2>中秋节的习俗</h2>
+        <ul>
+            <li>赏月：中秋节的夜晚，家家户户会一起赏月，象征着团圆和美好。</li>
+            <li>吃月饼：月饼是中秋节的传统美食，象征着团圆和甜蜜。</li>
+            <li>拜月：古代人们会在中秋节祭拜月神，祈求丰收和幸福。</li>
+            <li>灯笼：中秋节时，孩子们会提灯笼，增加节日气氛。</li>
+        </ul>
+    </div>
+
+    <!-- 倒计时 -->
+    <div class="countdown">
+        距离中秋节还有：<span id="countdown-timer"></span>
+    </div>
+
+    <!-- 动态祝福语 -->
+    <div class="blessings-box" id="blessings-box">
+        愿你中秋节月圆人圆事事圆满！
+    </div>
+
+    <footer>
+        <p>&copy; 2024 中秋节快乐</p>
+    </footer>
+
+    <script>
+        // 倒计时
+        function countdownToMidAutumn() {
+            const midAutumnDate = new Date('2024-09-17T00:00:00');
+            const now = new Date();
+            const diff = midAutumnDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown-timer').textContent = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+        }
+        setInterval(countdownToMidAutumn, 1000);
+
+        // 动态祝福语
+        const blessings = [
+            '愿你中秋月圆，幸福安康！',
+            '月圆人圆事事圆满，中秋快乐！',
+            '阖家团圆，幸福美满！',
+            '祝你中秋节快乐，万事如意！'
+        ];
+        let blessingsIndex = 0;
+        function rotateBlessings() {
+            blessingsIndex = (blessingsIndex + 1) % blessings.length;
+            document.getElementById('blessings-box').textContent = blessings[blessingsIndex];
+        }
+        setInterval(rotateBlessings, 5000);
+    </script>
+</body>
+</html>
