@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中秋节快乐</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
             color: #333;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
         }
 
         header {
@@ -24,19 +28,6 @@
         header h1 {
             font-size: 36px;
             color: #d2691e;
-        }
-
-        /* 月亮背景动画 */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 10%;
-            left: -100px;
-            width: 200px;
-            height: 200px;
-            background-image: url('moon .png'); /* 可替换为月亮图片 */
-            background-size: cover;
-            animation: moveMoon 20s linear infinite;
         }
 
         @keyframes moveMoon {
